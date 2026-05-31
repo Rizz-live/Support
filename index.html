@@ -130,41 +130,43 @@ body::after{
   pointer-events:none;
 }
 
-/* logo wrap */
+/* logo wrap — extra padding so rings/glow are never clipped */
 .logo-wrap{
-  position:relative;display:inline-flex;align-items:center;justify-content:center;
-  width:72px;height:72px;margin:20px auto 18px;
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:120px;height:120px;margin:10px auto 16px;
 }
-.logo-wrap::before{
-  content:'';position:absolute;
-  inset:-14px;border-radius:50%;
-  background:conic-gradient(from 0deg,rgba(200,151,58,0.5),rgba(91,47,190,0.4),rgba(192,22,138,0.35),rgba(200,151,58,0.5));
-  filter:blur(4px);
+.logo-glow{
+  position:absolute;
+  width:86px;height:86px;border-radius:50%;
+  background:conic-gradient(from 0deg,rgba(200,151,58,0.55),rgba(91,47,190,0.45),rgba(192,22,138,0.38),rgba(200,151,58,0.55));
+  filter:blur(5px);
   animation:spinGlow 3s linear infinite;
 }
-.logo-wrap::after{
-  content:'';position:absolute;
-  inset:-6px;border-radius:50%;
-  background:conic-gradient(from 180deg,rgba(200,151,58,0.6),rgba(91,47,190,0.5),rgba(200,151,58,0.6));
-  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - 1.5px));
-  mask:radial-gradient(farthest-side,transparent calc(100% - 1.5px),#000 calc(100% - 1.5px));
+.logo-border{
+  position:absolute;
+  width:80px;height:80px;border-radius:50%;
+  background:conic-gradient(from 180deg,rgba(200,151,58,0.65),rgba(91,47,190,0.55),rgba(200,151,58,0.65));
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px));
+  mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px));
   animation:spinGlow 2.5s linear infinite reverse;
 }
 @keyframes spinGlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .logo-ring1{
-  position:absolute;inset:-11px;border-radius:50%;
-  border:1.5px dashed rgba(184,134,11,0.45);
+  position:absolute;
+  width:94px;height:94px;border-radius:50%;
+  border:1.5px dashed rgba(184,134,11,0.5);
   animation:spin 8s linear infinite;
-  box-shadow:0 0 8px rgba(184,134,11,0.15);
+  box-shadow:0 0 8px rgba(184,134,11,0.18);
 }
 .logo-ring2{
-  position:absolute;inset:-17px;border-radius:50%;
-  border:1.5px dashed rgba(91,47,190,0.3);
+  position:absolute;
+  width:108px;height:108px;border-radius:50%;
+  border:1.5px dashed rgba(91,47,190,0.32);
   animation:spin 12s linear infinite reverse;
 }
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .logo-inner{
-  position:relative;z-index:1;
+  position:relative;z-index:2;
   width:72px;height:72px;border-radius:50%;
   background:var(--bg3);
   border:1.5px solid var(--card-border);
@@ -339,21 +341,12 @@ body::after{
   <!-- HERO -->
   <div class="hero">
     <div class="logo-wrap">
+      <div class="logo-glow"></div>
+      <div class="logo-border"></div>
       <div class="logo-ring1"></div>
       <div class="logo-ring2"></div>
       <div class="logo-inner">
-        <svg width="36" height="36" viewBox="0 0 38 38" fill="none">
-          <defs>
-            <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#C8973A"/>
-              <stop offset="100%" stop-color="#8B6200"/>
-            </linearGradient>
-          </defs>
-          <polygon points="19,2 36,11 36,27 19,36 2,27 2,11" fill="url(#hg)" opacity=".15" stroke="url(#hg)" stroke-width="1.5"/>
-          <polygon points="19,7 30,13 30,25 19,31 8,25 8,13" fill="url(#hg)" opacity=".3"/>
-          <polygon points="19,12 25,15.5 25,22.5 19,26 13,22.5 13,15.5" fill="url(#hg)"/>
-          <circle cx="19" cy="19" r="3" fill="#fff" opacity=".7"/>
-        </svg>
+        <img src="logo.png" width="52" height="52" style="object-fit:contain;border-radius:8px;">
       </div>
     </div>
     <div class="hero-eyebrow">Global Support Center</div>
